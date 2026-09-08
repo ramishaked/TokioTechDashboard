@@ -6581,7 +6581,7 @@ const NAV_HIDE = 'tokio_nav_collapsed';
 // גילוי אוטומטי של הטאבים → טעינה מקבילה → פרסינג → רינדור.
 // אין כאן שום נתון צרוב. לעדכון: עורכים את הגיליון ולוחצים "רענן".
 // ════════════════════════════════════════════════════════════════
-const BUILD = 'v2';
+const BUILD = 'v3';
 const PUB = 'https://docs.google.com/spreadsheets/d/e/' +
   '2PACX-1vS-XQh55rKeeP15BOyg9jFOcpzL6SluLxUGoBcy235AFVZxeaF0LlZ4G4K2xgkPJqNNpDFRfDPteQt0/pub';
 
@@ -6589,10 +6589,11 @@ const PUB = 'https://docs.google.com/spreadsheets/d/e/' +
 // אם המפה הזו מלאה — היא הקובעת, ואין תלות בגילוי אוטומטי.
 // פורמט: 'שם הטאב כפי שהוא בגיליון': 'GID'
 // ── תצוגה 13: כתובת שירות השאלות (v83) ─────────────────────────
-// הכתובת של פרויקט Vercel שתיקיית השורש שלו היא `ask/` בריפו הזה. זו
-// התלות החיצונית היחידה מעבר לגיליון, ומבודדת לתצוגה הזו: ריק = הכפתור
-// מנוטרל והדף מסביר, ושום תצוגה אחרת לא מושפעת. ראה ask/README.md.
-const ASK_URL = 'https://tokio-tech-ask.vercel.app';
+// פרויקט Vercel אחד מגיש גם את הדף וגם את `api/ask.js`. הכתובת מוחלטת
+// כדי שגם העותק שב-GitHub Pages יגיע לאותה נקודת קצה. זו התלות החיצונית
+// היחידה מעבר לגיליון, ומבודדת לתצוגה הזו: ריק = הכפתור מנוטרל והדף
+// מסביר, ושום תצוגה אחרת לא מושפעת. ראה README.md.
+const ASK_URL = 'https://tokio-tech-dashboard.vercel.app';
 
 const GID_MAP = {
   'תשפה (2)' : '392061415',

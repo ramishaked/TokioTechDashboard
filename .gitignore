@@ -5,3 +5,4 @@ ask/package-lock.json
 .vercel/
 .claude/launch.json
 .DS_Store
+/node_modules/

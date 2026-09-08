@@ -1,0 +1,11 @@
+{
+  "name": "tokio-tech-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "דשבורד מדד טק עירוני (דמו גנרי). index.html מוגש כקובץ סטטי; api/ask.js היא פונקציית Serverless יחידה מאחורי תצוגת 'שאלה על הנתונים'.",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.123.0"
+  }
+}

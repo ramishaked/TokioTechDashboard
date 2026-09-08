@@ -7,14 +7,18 @@
 //
 // משתני סביבה (Vercel → Settings → Environment Variables):
 //   ANTHROPIC_API_KEY   חובה.
-//   ALLOWED_ORIGIN      רשות. ברירת מחדל: https://ramishaked.github.io
+//   ALLOWED_ORIGIN      רשות. רשימה מופרדת בפסיקים. ברירת המחדל מכסה את
+//                       שני המקומות שבהם הדף חי: GitHub Pages ו-Vercel.
 //   ASK_MODEL           רשות. ברירת מחדל: claude-opus-5
 //   ANTHROPIC_WORKSPACE_ID  נדרש רק למפתח "identity-linked": ה-API דורש
 //                       אז את מזהה ה-workspace (wrkspc_...) בכותרת.
 
 import Anthropic from '@anthropic-ai/sdk';
 
-const ORIGIN   = process.env.ALLOWED_ORIGIN || 'https://ramishaked.github.io';
+// הדף מוגש משני מקומות (GitHub Pages ו-Vercel), ולכן רשימת מקורות ולא אחד.
+const ORIGINS = (process.env.ALLOWED_ORIGIN ||
+  'https://ramishaked.github.io,https://tokio-tech-dashboard.vercel.app')
+  .split(',').map(s => s.trim()).filter(Boolean);
 const MODEL    = process.env.ASK_MODEL || 'claude-opus-5';
 const MAX_BODY = 400 * 1024;     // החבילה כ-60–120KB; מעבר לזה אינו הדף שלנו
 const MAX_Q    = 500;            // תווים בשאלה
@@ -61,7 +65,9 @@ const SYSTEM = `אתה עונה על שאלות של מנהלי חינוך על 
 
 export default async function handler(req, res){
   const origin = req.headers.origin || '';
-  const okOrigin = origin === ORIGIN || /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(origin);
+  // בקשה בלי Origin היא same-origin מהדף שמוגש כאן, ולכן מותרת.
+  const okOrigin = !origin || ORIGINS.includes(origin) ||
+    /^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?$/.test(origin);
   if(okOrigin) res.setHeader('Access-Control-Allow-Origin', origin);
   res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

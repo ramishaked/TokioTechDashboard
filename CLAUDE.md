@@ -6,10 +6,12 @@
 33 הרשויות אמיתיים (משרד החינוך, דו"ח המצוינות 2024), וטוקיו הוצבה ביניהן
 כשורת דמו.
 
-קובץ HTML **יחיד** (`index.html`) שמתארח ב-GitHub Pages ומושך נתונים חיים
+קובץ HTML **יחיד** (`index.html`) שמושך נתונים חיים
 מגיליון גוגל מפורסם. אין DB, אין קבצי נתונים, אין שלב בנייה.
 
-חי בכתובת: https://ramishaked.github.io/TokioTechDashboard/
+חי בשתי כתובות, אותו קוד:
+- https://tokio-tech-dashboard.vercel.app  (Vercel — מגיש גם את `api/ask`)
+- https://ramishaked.github.io/TokioTechDashboard/  (GitHub Pages)
 
 ## מה אסור
 1. **לא לגעת במערכת של חולון** (ריפו HolonTechDeshboard, פרויקט Vercel
@@ -33,7 +35,7 @@
 | שורת תוכנית החיזוק | בגיליון נקראת **נינג׳ה טק** (`ROWKEY` מקבל גם `עתידטק`). בממשק: "נינג׳ה טק" |
 | מצבת / סה"כ עיר | אין בגיליון. הקוד נופל לסכום בתי הספר ומסמן |
 | נתוני העיר ההיסטוריים | `CITY_MOE`, `CITY_HIST`, `CITY_MID`, `CITY_POT_2024`: **מומצאים**, מתועדים ב-`data/national.json` |
-| שירות השאלות | `ASK_URL = https://tokio-tech-ask.vercel.app`, פרויקט Vercel נפרד, Root Directory = `ask/`. ה-prompt גנרי וקורא את שם העיר מ-`cities.me` |
+| שירות השאלות | `api/ask.js` בשורש הריפו. פרויקט Vercel `tokio-tech-dashboard` מגיש גם את הדף וגם את הפונקציה, Root Directory = שורש. ה-prompt גנרי וקורא את שם העיר מ-`cities.me` |
 | localStorage | מפתחות `tokio_*` |
 
 ## מבנה הקוד ב-index.html
@@ -80,4 +82,4 @@ node tools/verify.mjs --live    # מול הגיליון האמיתי
 4. `CITY_MOE` / `CITY_HIST` / `CITY_MID` / `CITY_POT_2024` מהמקורות
    הרשמיים, ו-`data/national.json` בהתאם.
 5. שם שורת תוכנית החיזוק ב-`ROWKEY` ובטקסטים.
-6. פרויקט Vercel חדש ל-`ask/` ו-`ASK_URL`.
+6. פרויקט Vercel חדש ו-`ASK_URL` (או להשאיר את הקיים).
