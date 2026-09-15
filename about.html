@@ -10,7 +10,7 @@
 <style>
 :root{
   --night:#0f172a; --indigo:#2b4c9b; --indigo-d:#1d3573;
-  --teal:#16b3b3; --red:#d9463e;
+  --teal:#16b3b3; --teal-text:#0b7a7a; --red:#d9463e; --red-text:#b8322b;
   --ink:#14213d; --muted:#5f6b85; --line:#d9dfea; --wash:#eef1f7; --paper:#ffffff;
   --display:Heebo,Arial,sans-serif;
   --sans:Heebo,Arial,sans-serif;
@@ -28,12 +28,13 @@ img{max-width:100%;display:block;}
 .top{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
 .wm{font-family:var(--sans);font-weight:700;font-size:18px;white-space:nowrap;letter-spacing:-.3px;direction:ltr;color:var(--night);text-decoration:none;}
 .wm i{font-style:normal;color:var(--red);}
-.top nav a{text-decoration:none;font-size:15px;color:var(--muted);margin-inline-start:26px;}
+.top nav{display:flex;gap:26px;align-items:center;}
+.top nav a{text-decoration:none;font-size:15px;color:var(--muted);}
 .top nav a.demo{color:var(--indigo);font-weight:700;border-bottom:2px solid var(--teal);padding-bottom:2px;}
 
 /* ── hero ────────────────────────────────────────────── */
-.hero{padding:56px 0 24px;}
-.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(32px,4.6vw,56px);line-height:1.15;max-width:17ch;color:var(--night);letter-spacing:-.6px;}
+.hero{padding:40px 0 20px;}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.2vw,52px);line-height:1.15;max-width:20ch;color:var(--night);letter-spacing:-.6px;}
 .hero p.lead{margin-top:22px;max-width:58ch;font-size:19px;color:var(--ink);}
 .hero p.lead + p.lead{margin-top:14px;}
 .hero .acts{margin-top:30px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
@@ -44,16 +45,16 @@ img{max-width:100%;display:block;}
 .btn.s:hover{background:var(--wash);}
 
 /* ── the timeline (the one memorable element) ────────── */
-.tl{margin:54px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0 30px;}
+.tl{margin:36px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0 30px;}
 .tl h2{font-family:var(--display);font-size:22px;font-weight:800;color:var(--night);margin-bottom:6px;}
 .tl .sub{color:var(--muted);font-size:15px;max-width:70ch;margin-bottom:26px;}
 .tl .scroller{overflow-x:auto;padding-bottom:6px;}
-.tl svg{width:100%;min-width:880px;height:auto;display:block;overflow:visible;}
+.tl svg{width:100%;min-width:960px;height:auto;display:block;overflow:visible;}
 .tl text{font-family:var(--sans);}
-.tl .yr{font-size:15px;font-weight:700;fill:var(--night);}
-.tl .lbl{font-size:12.5px;fill:var(--muted);}
-.tl .lbl.t{fill:var(--teal);font-weight:700;}
-.tl .lbl.r{fill:var(--red);font-weight:700;}
+.tl .yr{font-size:16px;font-weight:700;fill:var(--night);}
+.tl .lbl{font-size:14px;fill:var(--muted);}
+.tl .lbl.t{fill:var(--teal-text);font-weight:700;}
+.tl .lbl.r{fill:var(--red-text);font-weight:700;}
 .tl .lbl.d{fill:var(--night);font-weight:700;}
 .tl .legend{display:flex;gap:26px;flex-wrap:wrap;margin-top:18px;font-size:14px;color:var(--muted);}
 .tl .legend span{display:inline-flex;align-items:center;gap:8px;}
@@ -62,7 +63,8 @@ img{max-width:100%;display:block;}
 .tl .legend i.r{background:var(--red);}
 .tl .legend i.d{background:var(--night);}
 @media (prefers-reduced-motion:no-preference){
-  #cursor{animation:ride 2.4s cubic-bezier(.4,0,.2,1) .4s 1 both;}
+  #cursor{animation:ride 2.4s cubic-bezier(.4,0,.2,1) .3s 1 both;animation-play-state:paused;}
+  .tl.play #cursor{animation-play-state:running;}
   @keyframes ride{from{transform:translateX(0)}to{transform:translateX(var(--ride,0px))}}
 }
 
@@ -74,7 +76,7 @@ img{max-width:100%;display:block;}
 .formula{font-family:var(--display);color:var(--night);border-inline-start:4px solid var(--teal);padding:8px 22px 8px 0;}
 .formula .row{display:flex;align-items:baseline;gap:14px;font-size:clamp(24px,3vw,34px);font-weight:800;letter-spacing:-.4px;line-height:1.25;}
 .formula .row small{font-family:var(--sans);font-size:15px;font-weight:400;color:var(--muted);}
-.formula .op{color:var(--teal);font-size:.8em;}
+.formula .op{color:var(--teal-text);font-size:.8em;display:inline-block;width:1em;text-align:center;}
 .formula .eq{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:18px;font-family:var(--sans);color:var(--ink);}
 .formula .eq b{font-family:var(--display);font-size:22px;font-weight:800;color:var(--night);}
 .formula .note{font-family:var(--sans);font-size:13.5px;color:var(--muted);margin-top:8px;}
@@ -82,7 +84,7 @@ img{max-width:100%;display:block;}
 /* ── four questions ──────────────────────────────────── */
 .qs{padding:56px 0 40px;}
 .qs h2{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.3px;color:var(--night);margin-bottom:34px;max-width:24ch;line-height:1.2;}
-.q{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:22px 0;border-top:1px solid var(--line);}
+.q{display:grid;grid-template-columns:240px 1fr;gap:28px;padding:22px 0;border-top:1px solid var(--line);}
 .q:last-child{border-bottom:1px solid var(--line);}
 .q h3{font-family:var(--display);font-size:19px;font-weight:800;color:var(--indigo-d);line-height:1.25;}
 .q p{max-width:64ch;}
@@ -91,8 +93,8 @@ img{max-width:100%;display:block;}
 .screens{padding:56px 0 20px;}
 .screens h2{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.3px;color:var(--night);margin-bottom:8px;}
 .screens .sub{color:var(--muted);margin-bottom:26px;}
-.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(440px,1fr);gap:22px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;scrollbar-width:thin;}
-.rail figure{scroll-snap-align:start;}
+.rail{display:grid;grid-template-columns:1fr 1fr;gap:28px 22px;}
+.rail a{display:block;}
 .rail img{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;box-shadow:0 18px 40px -28px rgba(15,23,42,.45);}
 .rail figcaption{margin-top:12px;font-size:15px;color:var(--ink);max-width:54ch;}
 .rail figcaption b{color:var(--night);}
@@ -102,14 +104,14 @@ img{max-width:100%;display:block;}
 .how h2{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.3px;color:var(--night);line-height:1.2;margin-bottom:14px;}
 .how p{max-width:50ch;}
 .how p + p{margin-top:12px;}
-.sheet{border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:13.5px;background:#fff;}
+.sheet{border:1px solid var(--line);border-radius:6px;overflow:hidden;overflow-x:auto;font-size:13.5px;background:#fff;}
 .sheet .cap{background:var(--wash);padding:8px 14px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;}
 .sheet table{border-collapse:collapse;width:100%;}
 .sheet th,.sheet td{padding:7px 12px;border-top:1px solid var(--line);text-align:right;white-space:nowrap;}
 .sheet th{font-weight:700;color:var(--night);background:#fafbfd;}
 .sheet td.n{font-variant-numeric:tabular-nums;direction:ltr;text-align:left;color:var(--ink);}
 .sheet tr.hi td{background:rgba(22,179,179,.08);}
-.sheet tr.hi td:first-child{box-shadow:inset 4px 0 0 var(--teal);}
+.sheet tr.hi td:first-child{box-shadow:inset -4px 0 0 var(--teal);}
 
 /* ── contact ─────────────────────────────────────────── */
 .contact{margin:72px 0 0;background:var(--night);color:#fff;border-radius:10px;padding:48px 48px 44px;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;}
@@ -119,18 +121,22 @@ img{max-width:100%;display:block;}
 .contact .card .name{font-weight:700;font-size:18px;}
 .contact .card .role{color:rgba(255,255,255,.7);font-size:15px;margin-top:2px;}
 .contact .card a{display:inline-block;margin-top:16px;color:#fff;text-decoration:none;direction:ltr;unicode-bidi:embed;font-size:17px;border-bottom:2px solid var(--teal);padding-bottom:2px;}
-.contact .card .tel{margin-top:8px;color:rgba(255,255,255,.7);font-size:15px;}
+.contact .card .go{display:inline-block;margin-top:18px;background:var(--teal);color:var(--night);font-weight:700;text-decoration:none;padding:11px 18px;border-radius:6px;font-size:15px;}
+.contact .card .go:hover{background:#12a0a0;}
 
 footer{padding:40px 0 48px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;}
 footer a{color:var(--indigo);}
 
+@media (max-width:480px){ .top nav a:first-child{display:none;} }
 @media (max-width:820px){
   body{font-size:16px;}
   .def,.how,.contact{grid-template-columns:1fr;gap:28px;}
   .q{grid-template-columns:1fr;gap:6px;}
-  .rail{grid-auto-columns:minmax(85vw,1fr);}
+  .rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(85vw,1fr);grid-template-columns:none;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x proximity;}
+  .rail figure{scroll-snap-align:start;}
   .contact{padding:32px 24px;}
-  .top nav a{margin-inline-start:16px;}
+  .top nav{gap:14px;}
+  .wm{flex-shrink:0;font-size:16px;}
 }
 </style>
 </head>
@@ -140,7 +146,7 @@ footer a{color:var(--indigo);}
   <a class="wm" href="./about.html">Tokio <i>Tech</i> Dashboard</a>
   <nav>
     <a href="#how">איך זה עובד</a>
-    <a href="#contact">פגישה</a>
+    <a href="#contact">תיאום הצגה</a>
     <a class="demo" href="./">לדשבורד</a>
   </nav>
 </header>
@@ -148,11 +154,11 @@ footer a{color:var(--indigo);}
 <main>
   <section class="wrap hero">
     <h1>מטרה אחת: להעלות את מדד בגרות-הטק של העיר.</h1>
-    <p class="lead">מדד בגרות-טק הוא שיעור הבוגרים שסיימו 5 יח"ל מתמטיקה, 5 יח"ל אנגלית, ופיזיקה או מדעי המחשב. משרד החינוך מפרסם אותו לכל רשות פעם בשנה, ועליו ראש העיר נמדד.</p>
+    <p class="lead">מדד בגרות-טק הוא שיעור הבוגרים שסיימו 5 יח"ל מתמטיקה, 5 יח"ל אנגלית, ופיזיקה או מדעי המחשב. משרד החינוך מפרסם אותו לכל רשות פעם בשנה, וזה המספר שראש העיר ואגף החינוך נמדדים עליו.</p>
     <p class="lead">המערכת קיימת כדי שאגף החינוך ינהל את המספר הזה במהלך השנה, ולא יקבל אותו בדיעבד: לראות מי בדרך לזכאות, איפה תלמידים נופלים מהמסלול, ומה צריך לעשות בכל בית ספר, לפני שהמחזור מסיים.</p>
     <div class="acts">
       <a class="btn p" href="./">לדשבורד ההדגמה</a>
-      <a class="btn s" href="#contact">לתאם הצגה, 45 דקות</a>
+      <a class="btn s" href="#contact">לתאם הצגה של 45 דקות</a>
     </div>
   </section>
 
@@ -160,7 +166,7 @@ footer a{color:var(--indigo);}
     <h2 id="tlh">למה לנהל את המדד, ולא לחכות לו</h2>
     <p class="sub">המדד נקבע לאורך שלוש שנים, מהכניסה ל-י' ועד סיום יב', ומתפרסם רק שנה אחרי שהמחזור עזב. כל נקודת דגימה במערכת היא רגע שבו עוד אפשר להשפיע. נקודת הפרסום היא הרגע היחיד שבו כבר לא.</p>
     <div class="scroller">
-    <svg id="tlsvg" viewBox="0 0 1060 190" role="img" aria-label="ציר זמן: שכבות י', יא', יב' עם שתי דגימות בכל שנה, ופרסום הדירוג שנה אחרי סיום המחזור">
+    <svg id="tlsvg" viewBox="0 0 1060 200" role="img" aria-label="ציר זמן: שכבות י', יא', יב' עם שתי דגימות בכל שנה, ופרסום הדירוג שנה אחרי סיום המחזור">
       <!-- axis -->
       <line x1="1040" y1="100" x2="20" y2="100" stroke="#d9dfea" stroke-width="2"/>
       <!-- year bands (RTL: first year on the right) -->
@@ -202,7 +208,7 @@ footer a{color:var(--indigo);}
         <text class="lbl" x="90" y="160" text-anchor="middle">המחזור כבר לא בבית הספר</text>
       </g>
       <!-- riding cursor: "אתם כאן" -->
-      <g id="cursor" style="--ride:-690px">
+      <g id="cursor" style="--ride:-465px">
         <line x1="1010" y1="52" x2="1010" y2="100" stroke="#0f172a" stroke-width="2" stroke-dasharray="4 4"/>
         <rect x="982" y="40" width="56" height="20" rx="4" fill="#0f172a"/>
         <text x="1010" y="54" text-anchor="middle" fill="#fff" style="font-size:12px;font-weight:700">אתם כאן</text>
@@ -223,11 +229,11 @@ footer a{color:var(--indigo);}
       <p>הדשבורד לא ממציא הגדרה נוחה יותר. הוא לוקח את ההגדרה הרשמית, מחשב אותה מרישומי בתי הספר, ומציג לצדה גם את המכנה הרשמי של המשרד, כך שהמספר שיופיע בפרסום הבא כבר מוכר מראש.</p>
     </div>
     <div class="formula" aria-label="הגדרת המדד">
-      <div class="row"><span>5 יח"ל מתמטיקה</span></div>
+      <div class="row"><span class="op" aria-hidden="true"></span><span>5 יח"ל מתמטיקה</span></div>
       <div class="row"><span class="op">+</span><span>5 יח"ל אנגלית</span></div>
-      <div class="row"><span class="op">+</span><span>פיזיקה או מדעי המחשב</span><small>5 יח"ל</small></div>
-      <div class="eq">חלקי כל תלמידי השכבה. הממוצע הארצי ב-2025: <b>11.6%</b></div>
-      <div class="note">מקור: משרד החינוך, "זכאות לבגרות טק", מאי 2026.</div>
+      <div class="row"><span class="op">+</span><span>5 יח"ל פיזיקה או מדעי המחשב</span></div>
+      <div class="eq">חלקי כל תלמידי השכבה. הממוצע הארצי, מחזור 2025: <b>11.6%</b></div>
+      <div class="note">מקור: משרד החינוך, "זכאות לבגרות טק", פורסם במאי 2026.</div>
     </div>
   </section>
 
@@ -256,19 +262,19 @@ footer a{color:var(--indigo);}
     <p class="sub">מתוך דשבורד ההדגמה. העיר, בתי הספר והמספרים בדויים. המבנה, ההגדרות והנתונים הארציים אמיתיים.</p>
     <div class="rail">
       <figure>
-        <img src="assets/exec.jpg" alt="תקציר מנהלים: המדד הרשמי, המקום בדירוג, הפער ליעד והחסמים" width="1400" height="803">
+        <a href="./" title="לפתיחת הדשבורד"><img src="assets/exec.jpg" alt="תקציר מנהלים: המדד הרשמי, המקום בדירוג, הפער ליעד והחסמים" width="1400" height="803"></a>
         <figcaption><b>תקציר מנהלים.</b> המדד הרשמי, המקום בדירוג, הפער ליעד והחסם המרכזי. המסך לישיבה עם ראש העיר.</figcaption>
       </figure>
       <figure>
-        <img src="assets/insights.jpg" alt="תובנות: הדלף לפי בית ספר, מסודר לפי עלות בתלמידים" width="1400" height="803">
+        <a href="./" title="לפתיחת הדשבורד"><img src="assets/insights.jpg" alt="תובנות: הדלף לפי בית ספר, מסודר לפי עלות בתלמידים" width="1400" height="803"></a>
         <figcaption><b>איפה המנופים.</b> הדלף מ-ט' ל-יב' לפי בית ספר, מסודר לפי כמה תלמידים כל בעיה עולה לעיר.</figcaption>
       </figure>
       <figure>
-        <img src="assets/trends.jpg" alt="התפתחות המדד לאורך עשור, מהסדרה הרשמית אל דגימות הגיליון" width="1400" height="803">
+        <a href="./" title="לפתיחת הדשבורד"><img src="assets/trends.jpg" alt="התפתחות המדד לאורך עשור, מהסדרה הרשמית אל דגימות הגיליון" width="1400" height="803"></a>
         <figcaption><b>התפתחות המדד.</b> הסדרה הרשמית של משרד החינוך נמשכת אל דגימות הגיליון העירוני, כולל תחילת השנה הנוכחית.</figcaption>
       </figure>
       <figure>
-        <img src="assets/national.jpg" alt="הרשות מול הארץ: דירוג באשכול, בקבוצת הגודל ובאזור" width="1400" height="803">
+        <a href="./" title="לפתיחת הדשבורד"><img src="assets/national.jpg" alt="הרשות מול הארץ: דירוג באשכול, בקבוצת הגודל ובאזור" width="1400" height="803"></a>
         <figcaption><b>הרשות מול הארץ.</b> מיקום באשכול החברתי-כלכלי, בקבוצת הגודל ובאזור, מתוך 33 רשויות.</figcaption>
       </figure>
     </div>
@@ -282,16 +288,16 @@ footer a{color:var(--indigo);}
       <p>מרגע שהגיליון הראשון מלא, הדשבורד באוויר בתוך שבועות ספורים, עם הנתונים של הרשות.</p>
     </div>
     <div class="sheet" aria-label="דוגמה למבנה הטבלה">
-      <div class="cap"><span>נתוני מדד טק להזנה</span><span>טאב: תשפ"ז (תחילת שנה)</span></div>
+      <div class="cap"><span>נתוני מדד טק להזנה · סאקורה</span><span>טאב: תשפ"ז (תחילת שנה)</span></div>
       <table>
-        <thead><tr><th>בית ספר</th><th>מקצוע</th><th>י׳ בנים</th><th>י׳ בנות</th><th>י׳ סה"כ</th></tr></thead>
+        <thead><tr><th>מקצוע</th><th>י׳ בנים</th><th>י׳ בנות</th><th>י׳ סה"כ</th></tr></thead>
         <tbody>
-          <tr><td>סאקורה</td><td>כמות תלמידים</td><td class="n">146</td><td class="n">146</td><td class="n">292</td></tr>
-          <tr><td>סאקורה</td><td>מתמטיקה 5 יח׳</td><td class="n">88</td><td class="n">79</td><td class="n">167</td></tr>
-          <tr><td>סאקורה</td><td>אנגלית 5 יח׳</td><td class="n">88</td><td class="n">70</td><td class="n">158</td></tr>
-          <tr><td>סאקורה</td><td>פיזיקה 5 יח׳</td><td class="n">79</td><td class="n">52</td><td class="n">131</td></tr>
-          <tr><td>סאקורה</td><td>מדעי המחשב 5 יח׳</td><td class="n">37</td><td class="n">26</td><td class="n">63</td></tr>
-          <tr class="hi"><td>סאקורה</td><td>זכאות למדד טק</td><td class="n">79</td><td class="n">56</td><td class="n">135</td></tr>
+          <tr><td>כמות תלמידים</td><td class="n">146</td><td class="n">146</td><td class="n">292</td></tr>
+          <tr><td>מתמטיקה 5 יח׳</td><td class="n">88</td><td class="n">79</td><td class="n">167</td></tr>
+          <tr><td>אנגלית 5 יח׳</td><td class="n">88</td><td class="n">70</td><td class="n">158</td></tr>
+          <tr><td>פיזיקה 5 יח׳</td><td class="n">79</td><td class="n">52</td><td class="n">131</td></tr>
+          <tr><td>מדעי המחשב 5 יח׳</td><td class="n">37</td><td class="n">26</td><td class="n">63</td></tr>
+          <tr class="hi"><td>זכאות למדד טק</td><td class="n">79</td><td class="n">56</td><td class="n">135</td></tr>
         </tbody>
       </table>
     </div>
@@ -308,16 +314,24 @@ footer a{color:var(--indigo);}
         <div class="name">רמי שקד</div>
         <div class="role">פיתוח והטמעה</div>
         <a href="mailto:rami.shaked@gmail.com">rami.shaked@gmail.com</a>
-        <div class="tel">[טלפון]</div>
+        <a class="go" href="mailto:rami.shaked@gmail.com?subject=%D7%AA%D7%99%D7%90%D7%95%D7%9D%20%D7%94%D7%A6%D7%92%D7%94%2C%20%D7%9E%D7%93%D7%93%20%D7%91%D7%92%D7%A8%D7%95%D7%AA-%D7%98%D7%A7">לתאם הצגה של 45 דקות</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer class="wrap">
-  <div>Tokio Tech Dashboard. הנתונים הארציים: משרד החינוך ודו"ח המצוינות של ישראל 2024. נתוני העיר בדויים לצורך הדגמה.</div>
+  <div>Tokio Tech Dashboard. הסדרות הארציות: משרד החינוך, פרסום מאי 2026. דירוג 33 הרשויות: דו"ח המצוינות של ישראל, מחזור 2024. נתוני העיר בדויים לצורך הדגמה.</div>
   <div><a href="./">דשבורד ההדגמה</a></div>
 </footer>
 
+<script>
+  // ציר הזמן יושב מתחת לקיפול; הסמן יוצא לדרך רק כשהוא נראה.
+  (function(){
+    var tl=document.querySelector('.tl'); if(!tl||!('IntersectionObserver' in window)){ if(tl) tl.classList.add('play'); return; }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ tl.classList.add('play'); io.disconnect(); } }); },{threshold:.45});
+    io.observe(tl);
+  })();
+</script>
 </body>
 </html>
