@@ -1074,7 +1074,7 @@ body{
   <section class="view active" id="view-overview">
     <div class="page-head">
       <div>
-        <h1 class="page-title">תמונת מצב עירונית נכון לעכשיו (סוף תשפ״ו לקראת תשפ״ז)</h1>
+        <h1 class="page-title" id="ovTitle">תמונת מצב עירונית</h1>
         <p class="page-sub" id="ovSub">תמונת מצב בגרות-טק</p>
       </div>
       <div class="page-meta">
@@ -2331,6 +2331,10 @@ function refLine(label, value, color, n){
 // VIEW 1: OVERVIEW
 // ════════════════════════════════════════════════════════════════
 function renderOverview(){
+  // הכותרת נגזרת מהתקופה הנבחרת ולא צרובה: הדגימה האחרונה יכולה להיות
+  // תחילת שנה או סופה, והטקסט חייב לומר בדיוק מה נמדד.
+  const _ttl=document.getElementById('ovTitle');
+  if(_ttl) _ttl.textContent = 'תמונת מצב עירונית' + (DATA_LABEL? ' · '+DATA_LABEL : '');
   const _sub=document.getElementById('ovSub');
   if(_sub) _sub.textContent = 'תמונת מצב בגרות-טק' + (DATA_LABEL? ' — '+DATA_LABEL : '');
   document.getElementById('metaSchools').textContent = SCHOOLS.length;
@@ -4378,7 +4382,7 @@ function renderYYDecade(A, B){
   const pill = (lbl, val, ref, col) =>
     `<div class="meta-pill"><span style="color:var(--muted);">${lbl}</span>
       <strong style="color:${col};">${val}</strong>
-      ${ref? `<span class="alt-num">(תשפ״ד ${ref})</span>` : ''}</div>`;
+      ${ref? `<span class="alt-num">(${hebYearName(CITY_YEAR)} ${ref})</span>` : ''}</div>`;
   document.getElementById('yyDecadePills').innerHTML = last ? `
     <div class="page-meta" style="margin-top:16px;justify-content:flex-start;">
       ${pill('זכאי בגרוטק יב׳', last.g.techN.toLocaleString('he-IL'), CITY_HIST.techN, TEAL)}
@@ -5236,7 +5240,7 @@ function renderCities(){
 // ════════════════════════════════════════════════════════════════
 // VIEW 11: תקציר מנהלים — השורה התחתונה, החסמים, והיעד
 //
-// מסך אחד לראש העיר ולמנהל מינהל החינוך: מה המצב, מה חוסם, ולאן
+// מסך אחד לראש העיר ולמנהל אגף החינוך: מה המצב, מה חוסם, ולאן
 // הולכים. **אפס נוסחאות חדשות** — כל מספר עובר דרך פונקציה שכבר
 // קיימת, ולכן זהה *בהגדרה* לזה שבתצוגות האחרות ולא "כמעט זהה".
 //
@@ -6581,7 +6585,7 @@ const NAV_HIDE = 'tokio_nav_collapsed';
 // גילוי אוטומטי של הטאבים → טעינה מקבילה → פרסינג → רינדור.
 // אין כאן שום נתון צרוב. לעדכון: עורכים את הגיליון ולוחצים "רענן".
 // ════════════════════════════════════════════════════════════════
-const BUILD = 'v3';
+const BUILD = 'v4';
 const PUB = 'https://docs.google.com/spreadsheets/d/e/' +
   '2PACX-1vS-XQh55rKeeP15BOyg9jFOcpzL6SluLxUGoBcy235AFVZxeaF0LlZ4G4K2xgkPJqNNpDFRfDPteQt0/pub';
 
