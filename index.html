@@ -4195,6 +4195,18 @@ function renderYYDecade(A, B){
   const sT = citySeries('tech'), sM = citySeries('ma5');
   const nR = sT.length;                                   // אינדקס התפר
   const ours = [A, B].map(p=> ({ p, g: yyGrade12(p.key) })).filter(o=> o.g);
+  const lastEnd = ours.length ? ours[ours.length-1] : null;   // דגימת סוף השנה האחרונה — לפילים
+
+  // ── דגימת תחילת שנה שמאוחרת מסוף השנה האחרון ─────────────────────
+  // כשהגיליון כבר מכיל את תחילת השנה הבאה (למשל תשפ"ז (1) אחרי תשפ"ו (2)),
+  // הגרף לא נעצר שנה אחורה: הנקודה מצטרפת **כמצב רישום**, חלולה ומסומנת
+  // "תחילת שנה". היא אינה נכנסת להשוואה השנתית שבכרטיסים — שם משווים
+  // סוף שנה לסוף שנה בלבד — ואינה מזיזה את הפילים, שמדברים על זכאים.
+  const openP = periodsSorted().filter(p=> p.half === 1 && B && p.year > B.year).slice(-1)[0];
+  const openG = openP ? yyGrade12(openP.key) : null;
+  const open  = openP && openG ? { p: openP, g: openG, open: true } : null;
+  if(open) ours.push(open);
+  const isOpen = i=> i >= nR && !!(ours[i-nR] && ours[i-nR].open);
 
   // המתג קובע איך מחושבות **התקופות שלנו בלבד**. השנים ההיסטוריות מגיעות
   // ממשה"ח כאחוז מוגמר ואין לנו נתון גולמי לחשב אותן מחדש — הן לא זזות.
@@ -4204,7 +4216,7 @@ function renderYYDecade(A, B){
   const tOf = g=> onMatz ? (g.tech ?? g.techAlt) : g.techAlt;
   const mOf = g=> onMatz ? (g.ma5  ?? g.ma5Alt)  : g.ma5Alt;
 
-  const labels = sT.map(p=> String(p.y)).concat(ours.map(o=> o.p.label.replace(/\s*\(.*\)/,'')));
+  const labels = sT.map(p=> String(p.y)).concat(ours.map(o=> o.p.label.replace(/\s*\(.*\)/,'') + (o.open ? ' · תחילת שנה' : '')));
   const techData = sT.map(p=> p.v).concat(ours.map(o=> tOf(o.g)));
   const ma5Data  = sM.map(p=> p.v).concat(ours.map(o=> mOf(o.g)));
   const exact    = sT.map(p=> p.exact).concat(ours.map(()=> true));
@@ -4237,11 +4249,12 @@ function renderYYDecade(A, B){
   const line = (label, data, col, align, other) => ({
     label, data, order: 1, borderColor: col, backgroundColor: col,
     borderWidth: 3.5, tension: 0.25,
-    pointRadius: ctx=> ctx.dataIndex >= nR ? 7 : 5,
+    pointRadius: ctx=> ctx.dataIndex >= nR ? (isOpen(ctx.dataIndex) ? 8 : 7) : 5,
     pointStyle: ctx=> ctx.dataIndex >= nR ? 'rectRot' : 'circle',
-    pointBackgroundColor: ctx=> ctx.dataIndex >= nR ? col : '#fff',
+    // נקודת תחילת שנה חלולה: מצב רישום, לא זכאות
+    pointBackgroundColor: ctx=> ctx.dataIndex >= nR && !isOpen(ctx.dataIndex) ? col : '#fff',
     pointBorderColor: col, pointBorderWidth: 2.5, fill: false, spanGaps: false,
-    segment: { borderDash: ctx=> ctx.p0DataIndex >= nR-1 ? [7,5] : undefined },
+    segment: { borderDash: ctx=> isOpen(ctx.p1DataIndex) ? [3,4] : ctx.p0DataIndex >= nR-1 ? [7,5] : undefined },
     datalabels: {
       // כל הנקודות מתויגות. מה שמונע בלגן: `sideOf` בוחר צד, פונט קטן לשנות
       // הביניים, ושלוש הנקודות הקובעות בולטות יותר.
@@ -4352,13 +4365,14 @@ function renderYYDecade(A, B){
             // ואילך אתר משה"ח (§12.5)
             title: items=>{
               const i = items[0].dataIndex;
-              return labels[i] + ' — ' + (i >= nR ? 'נתוני הגיליון'
+              return labels[i] + ' — ' + (isOpen(i) ? 'נתוני הגיליון · מצב רישום בתחילת השנה, לפני בחינות'
+                : i >= nR ? 'נתוני הגיליון'
                 : !exact[i] ? 'מדידה מהגרף' : i === 0 ? 'דו״ח המצוינות' : 'משרד החינוך');
             },
             // ערך אחד בלבד — המכנה שהמתג בחר. הצגת שני החישובים סתרה את המתג.
             label: ctx=> ctx.parsed.y == null ? null
               : ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%' +
-                (exact[ctx.dataIndex] ? '' : '  (משוער)')
+                (isOpen(ctx.dataIndex) ? '  (רישום, טרם נבחנו)' : exact[ctx.dataIndex] ? '' : '  (משוער)')
           } }
       },
       scales:{
@@ -4371,13 +4385,15 @@ function renderYYDecade(A, B){
     plugins:[seam]
   });
 
-  const last = ours.length ? ours[ours.length-1] : null;
+  const last = lastEnd;
   document.getElementById('yyDecadeSub').innerHTML =
     `שיעור הזכאים לבגרות הכוללת 5 יח״ל מתמטיקה ובגרות הייטק, <strong>בשכבת יב׳ בלבד</strong> — ` +
     `הדו״ח מודד בוגרים, ולכן זו השכבה בת-ההשוואה. <strong>המספר הגדול שבכרטיס הבא הוא המשוקלל של י׳–יב׳ ולכן שונה.</strong><br>` +
     `<strong>2014–2024 ממשרד החינוך</strong>, ומ-${A.label} ואילך <strong>מהגיליון העירוני</strong> — שני מקורות, ולכן התפר מסומן. ` +
     `<span class="alt-num">הקו האפור הוא <strong>בגרות הייטק הארצית</strong> (משרד החינוך, ${NAT.years[0]}–${NAT.years[NAT.years.length-1]}). ` +
-    `במתמטיקה 5 יח״ל הארצי עומד על ${_last(NAT.ma5).toFixed(1)}% — קו ארצי שני היה חוצה כאן את קו ההייטק של טוקיו ולכן אינו מוצג.</span>`;
+    `במתמטיקה 5 יח״ל הארצי עומד על ${_last(NAT.ma5).toFixed(1)}% — קו ארצי שני היה חוצה כאן את קו ההייטק של טוקיו ולכן אינו מוצג.</span>` +
+    (open ? `<br><strong>${open.p.label}</strong> מופיעה כנקודה חלולה: מצב הרישום בתחילת השנה, לפני בחינות. ` +
+            `ההשוואה שבכרטיסים למטה נעשית בין דגימות סוף שנה בלבד, כי רק הן מודדות זכאות.` : '');
 
   const pill = (lbl, val, ref, col) =>
     `<div class="meta-pill"><span style="color:var(--muted);">${lbl}</span>
@@ -6585,7 +6601,7 @@ const NAV_HIDE = 'tokio_nav_collapsed';
 // גילוי אוטומטי של הטאבים → טעינה מקבילה → פרסינג → רינדור.
 // אין כאן שום נתון צרוב. לעדכון: עורכים את הגיליון ולוחצים "רענן".
 // ════════════════════════════════════════════════════════════════
-const BUILD = 'v5';
+const BUILD = 'v6';
 const PUB = 'https://docs.google.com/spreadsheets/d/e/' +
   '2PACX-1vS-XQh55rKeeP15BOyg9jFOcpzL6SluLxUGoBcy235AFVZxeaF0LlZ4G4K2xgkPJqNNpDFRfDPteQt0/pub';
 
