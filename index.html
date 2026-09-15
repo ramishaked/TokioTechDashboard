@@ -869,6 +869,9 @@ body{
 .sb-refresh.busy .ic{animation:spin 0.8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .sb-stamp{font-size:11px;color:rgba(255,255,255,0.45);margin-top:8px;text-align:center;}
+.sb-about{display:block;font-size:11px;color:rgba(255,255,255,0.45);text-align:center;margin-top:4px;text-decoration:none;}
+.sb-about:hover{color:rgba(255,255,255,0.85);}
+.sidebar.collapsed .sb-about{display:none;}
 
 #loadOverlay{
   position:fixed;inset:0;z-index:900;background:var(--bg);
@@ -1050,6 +1053,7 @@ body{
     <select class="sb-select" id="periodSelect"></select>
     <button class="sb-refresh" id="btnRefresh"><span class="ic">↻</span><span>רענן נתונים</span></button>
     <div class="sb-stamp" id="dataStamp">—</div>
+    <a class="sb-about" href="about.html">על המערכת</a>
   </div>
 </aside>
 
@@ -6601,7 +6605,7 @@ const NAV_HIDE = 'tokio_nav_collapsed';
 // גילוי אוטומטי של הטאבים → טעינה מקבילה → פרסינג → רינדור.
 // אין כאן שום נתון צרוב. לעדכון: עורכים את הגיליון ולוחצים "רענן".
 // ════════════════════════════════════════════════════════════════
-const BUILD = 'v6';
+const BUILD = 'v7';
 const PUB = 'https://docs.google.com/spreadsheets/d/e/' +
   '2PACX-1vS-XQh55rKeeP15BOyg9jFOcpzL6SluLxUGoBcy235AFVZxeaF0LlZ4G4K2xgkPJqNNpDFRfDPteQt0/pub';
 
