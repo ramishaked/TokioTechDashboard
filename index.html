@@ -272,7 +272,7 @@ body{
 }
 .sc-card:hover{
   transform:translateY(-2px);
-  box-shadow:0 4px 12px rgba(106,62,156,0.12);
+  box-shadow:0 4px 12px rgba(43,76,155,0.12);
   border-color:var(--primary);
 }
 .sc-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;line-height:1.3;min-height:18px;}
@@ -632,7 +632,7 @@ body{
 #view-forecast .fc-bar{height:22px;border-radius:0 5px 5px 0;min-width:3px;background:var(--primary);}
 /* הצפי מפוספס ולא מקווקו: מסגרת מקווקוות על מילוי בהיר נעלמה על לבן (v90). */
 #view-forecast .fc-bar.est{background:repeating-linear-gradient(115deg,
-  rgba(106,62,156,.55) 0 7px, rgba(106,62,156,.16) 7px 14px);}
+  rgba(43,76,155,.55) 0 7px, rgba(43,76,155,.16) 7px 14px);}
 #view-forecast .fc-val{font-size:14px;font-weight:900;white-space:nowrap;color:var(--primary-d);}
 #view-forecast .fc-val small{font-size:11px;font-weight:500;color:var(--muted);margin-inline-start:8px;}
 #view-forecast .fc-how{font-size:11.5px;color:var(--muted);line-height:1.7;margin-top:16px;
@@ -2404,7 +2404,7 @@ function renderOverview(){
     data:{ labels: GRADES.map(g=>'שכבה '+g),
       datasets:[
         { label:'% טק עירוני', data: pcts,
-          borderColor: COL.primary, backgroundColor:'rgba(106,62,156,0.10)',
+          borderColor: COL.primary, backgroundColor:'rgba(43,76,155,0.10)',
           borderWidth:4, pointRadius:10, pointBackgroundColor:COL.primary, pointBorderColor:'#fff', pointBorderWidth:3,
           fill:true, tension:0.25,
           datalabels:{ anchor:'end', align:'top', offset:8,
@@ -2481,7 +2481,7 @@ function renderSubjects(){
     data:{ labels: GRADES.map(g=>'שכבה '+g),
       datasets:[
         {label:'מדד טק (זכאי בגרוטק)', data:htByGrade, borderColor:COL.primary,
-          backgroundColor:'rgba(106,62,156,0.10)',
+          backgroundColor:'rgba(43,76,155,0.10)',
           borderWidth:5, pointRadius:9, pointStyle:'rectRot',
           pointBackgroundColor:COL.primary, pointBorderColor:'#fff', pointBorderWidth:2,
           fill:false, tension:0.3, order:0,
@@ -2820,7 +2820,7 @@ function renderDeepDive(){
   ds.unshift({
     label:'מדד טק — בית ספר',
     data: techLine,
-    borderColor: COL.primary, backgroundColor:'rgba(106,62,156,0.10)',
+    borderColor: COL.primary, backgroundColor:'rgba(43,76,155,0.10)',
     borderWidth: 4, pointRadius: 7, pointStyle:'rectRot',
     pointBackgroundColor: COL.primary, pointBorderColor:'#fff', pointBorderWidth:2,
     tension: 0.25, spanGaps: true, fill: true,
@@ -4306,7 +4306,7 @@ function renderYYDecade(A, B){
       if(!a || !ours.length) return;
       const xs = (x.getPixelForValue(nR-1) + x.getPixelForValue(nR)) / 2;
       ctx.save();
-      ctx.fillStyle = 'rgba(106,62,156,0.055)';
+      ctx.fillStyle = 'rgba(43,76,155,0.055)';
       ctx.fillRect(xs, a.top, a.right - xs, a.bottom - a.top);
       ctx.strokeStyle = '#9aa0a6'; ctx.lineWidth = 2; ctx.setLineDash([6,4]);
       ctx.beginPath(); ctx.moveTo(xs, a.top); ctx.lineTo(xs, a.bottom); ctx.stroke();
@@ -6271,7 +6271,7 @@ function prDecade(){
           segment:{ borderDash: ctx=> ctx.p0DataIndex >= n-1 ? [7,5] : undefined },
           datalabels: lbl('#1d7a3d') },
         { label:'מדד הטק — טוקיו', data: techData,
-          order:1, borderColor:COL.primary, backgroundColor:'rgba(106,62,156,0.08)',
+          order:1, borderColor:COL.primary, backgroundColor:'rgba(43,76,155,0.08)',
           borderWidth:4, tension:0.25, spanGaps:true, fill:true,
           pointRadius:   ctx=> ctx.dataIndex >= n ? 6 : 4,
           pointStyle:    ctx=> ctx.dataIndex >= n ? 'rectRot' : 'circle',
@@ -6585,7 +6585,7 @@ const NAV_HIDE = 'tokio_nav_collapsed';
 // גילוי אוטומטי של הטאבים → טעינה מקבילה → פרסינג → רינדור.
 // אין כאן שום נתון צרוב. לעדכון: עורכים את הגיליון ולוחצים "רענן".
 // ════════════════════════════════════════════════════════════════
-const BUILD = 'v4';
+const BUILD = 'v5';
 const PUB = 'https://docs.google.com/spreadsheets/d/e/' +
   '2PACX-1vS-XQh55rKeeP15BOyg9jFOcpzL6SluLxUGoBcy235AFVZxeaF0LlZ4G4K2xgkPJqNNpDFRfDPteQt0/pub';
 
