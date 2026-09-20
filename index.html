@@ -67,6 +67,7 @@ body{
 .sidebar.collapsed .sb-toggle svg{transform:scaleX(-1);}
 /* סימן מילולי במקום לוגו: הדמו הגנרי אינו נושא מיתוג של רשות */
 .sb-wordmark{
+  text-decoration:none;cursor:pointer;
   flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 5px;
   direction:ltr;text-align:left;font-weight:900;letter-spacing:-0.3px;line-height:1.05;
 }
@@ -966,10 +967,10 @@ body{
   <div class="sb-brand">
     <div class="sb-bar">
 
-    <div class="sb-wordmark" aria-label="Tokio Tech Dashboard">
+    <a class="sb-wordmark" href="about.html" title="על המערכת" aria-label="Tokio Tech Dashboard: על המערכת">
       <span class="wm-a">Tokio</span><span class="wm-b">Tech</span>
       <span class="wm-c">Dashboard</span>
-    </div>
+    </a>
     <button class="sb-toggle" id="btnNav" title="הסתר תפריט" aria-label="הסתר תפריט">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -6605,7 +6606,7 @@ const NAV_HIDE = 'tokio_nav_collapsed';
 // גילוי אוטומטי של הטאבים → טעינה מקבילה → פרסינג → רינדור.
 // אין כאן שום נתון צרוב. לעדכון: עורכים את הגיליון ולוחצים "רענן".
 // ════════════════════════════════════════════════════════════════
-const BUILD = 'v7';
+const BUILD = 'v8';
 const PUB = 'https://docs.google.com/spreadsheets/d/e/' +
   '2PACX-1vS-XQh55rKeeP15BOyg9jFOcpzL6SluLxUGoBcy235AFVZxeaF0LlZ4G4K2xgkPJqNNpDFRfDPteQt0/pub';
 
