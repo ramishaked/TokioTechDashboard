@@ -81,6 +81,22 @@ img{max-width:100%;display:block;}
 .formula .eq b{font-family:var(--display);font-size:22px;font-weight:800;color:var(--night);}
 .formula .note{font-family:var(--sans);font-size:13.5px;color:var(--muted);margin-top:8px;}
 
+
+/* ── what you will know ──────────────────────────────── */
+.know{padding:64px 0 8px;}
+.know h2{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.3px;color:var(--night);line-height:1.2;margin-bottom:8px;}
+.know .sub{color:var(--muted);margin-bottom:28px;max-width:64ch;}
+.kn{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;border-top:1px solid var(--line);}
+.k{padding:22px 0 22px;border-bottom:1px solid var(--line);border-inline-start:4px solid transparent;padding-inline-start:0;}
+.k h3{font-size:19px;font-weight:800;color:var(--indigo-d);line-height:1.3;margin-bottom:6px;}
+.k p{max-width:52ch;}
+.k b{color:var(--night);}
+.k.keep{border-inline-start-color:#1f9d55;padding-inline-start:16px;}
+.k.fix{border-inline-start-color:var(--red);padding-inline-start:16px;}
+.defn{margin-top:22px;font-size:15px;color:var(--muted);}
+.defn summary{cursor:pointer;color:var(--indigo);font-weight:700;}
+.defn p{margin-top:8px;max-width:80ch;}
+
 /* ── four questions ──────────────────────────────────── */
 .qs{padding:56px 0 40px;}
 .qs h2{font-family:var(--display);font-size:28px;font-weight:800;letter-spacing:-.3px;color:var(--night);margin-bottom:34px;max-width:24ch;line-height:1.2;}
@@ -131,6 +147,7 @@ footer a{color:var(--indigo);}
 @media (max-width:820px){
   body{font-size:16px;}
   .def,.how,.contact{grid-template-columns:1fr;gap:28px;}
+  .kn{grid-template-columns:1fr;}
   .q{grid-template-columns:1fr;gap:6px;}
   .rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(85vw,1fr);grid-template-columns:none;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x proximity;}
   .rail figure{scroll-snap-align:start;}
@@ -222,41 +239,41 @@ footer a{color:var(--indigo);}
     </div>
   </section>
 
-  <section class="wrap def">
-    <div>
-      <h2>מה בדיוק נמדד</h2>
-      <p>ההגדרה קשיחה: שלושה רכיבים יחד, אצל אותו תלמיד. מי שלמד פיזיקה ברמת 4 יח"ל אינו נספר, וכך גם מי שירד למתמטיקה 4 יח"ל בכיתה יא'. רוב הדלף במדד קורה בדיוק בירידות האלה, ולא בכניסה.</p>
-      <p>הדשבורד מחשב את המדד מרישומי בתי הספר לפי ההגדרה הרשמית של משרד החינוך, ומציג לצדו את המכנה הרשמי של המשרד. כך המספר שיופיע בפרסום הבא כבר מוכר לכם מראש.</p>
+  <section class="wrap know">
+    <h2>מה תדעו, שהיום אתם לא יודעים</h2>
+    <p class="sub">שאלות שהמערכת עונה עליהן, עם התשובות של עיר ההדגמה. אצלכם המספרים יהיו שלכם.</p>
+    <div class="kn">
+      <div class="k"><h3>כמה תלמידים אנחנו מאבדים במעבר מהחטיבה לתיכון?</h3><p><b>403 תלמידים.</b> 924 לומדים במסלול הטק בכיתה ט', ורק 521 ממשיכים בו ב-י'. זה המעבר היקר ביותר בעיר, והמערכת מראה באילו בתי ספר הוא קורה.</p></div>
+      <div class="k"><h3>איפה נופלים בתיכון עצמו?</h3><p><b>במתמטיקה 5 יח"ל.</b> 953 נכנסים איתה ל-י', 529 מסיימים איתה את יב'. מי שיורד ל-4 יח"ל יוצא מהמדד גם אם הוא מצטיין בפיזיקה.</p></div>
+      <div class="k keep"><h3>מה עובד טוב בעיר, וכדאי לשמר?</h3><p><b>שני בתי ספר כמעט לא מאבדים תלמידים</b> במתמטיקה 5 יח"ל (דלף של 15% ו-24%, מול 60% ויותר באחרים). <b>41.6% מלומדי הטק הן תלמידות</b>, מעל הממוצע הארצי. ו-63% מבוגרי תוכנית התגבור בחרו במקצועות הטק.</p></div>
+      <div class="k fix"><h3>מה דורש שיפור, ואיפה בדיוק?</h3><p><b>ארבעה בתי ספר מאבדים יותר מ-60%</b> מלומדי המתמטיקה 5 יח"ל בין ט' ל-יב'. המערכת נוקבת בשמם, ומסדרת את הבעיות לפי כמה תלמידים כל אחת עולה לעיר.</p></div>
+      <div class="k"><h3>כמה חסר לנו כדי לעלות בדירוג?</h3><p><b>51 בוגרים.</b> העיר במקום 6 מתוך 20 הרשויות הגדולות. 51 זכאים נוספים בשלוש שנים, כ-17 בשנה, מכניסים אותה לחמישייה. המערכת מראה מאיזה בית ספר הם יכולים להגיע.</p></div>
+      <div class="k"><h3>מה יהיה המדד שלנו בפרסום הבא?</h3><p><b>16.5% בשנה הבאה, 17.0% בזו שאחריה</b>, מול יעד של 17.4%. הצפי נבנה מהתלמידים שכבר במסלול ומשיעורי ההתמדה שנמדדו בעיר.</p></div>
     </div>
-    <div class="formula" aria-label="הגדרת המדד">
-      <div class="row"><span class="op" aria-hidden="true"></span><span>5 יח"ל מתמטיקה</span></div>
-      <div class="row"><span class="op">+</span><span>5 יח"ל אנגלית</span></div>
-      <div class="row"><span class="op">+</span><span>5 יח"ל פיזיקה או מדעי המחשב</span></div>
-      <div class="eq">חלקי כל תלמידי השכבה. הממוצע הארצי, מחזור 2025: <b>11.6%</b></div>
-      <div class="note">מקור: משרד החינוך, "זכאות לבגרות טק", פורסם במאי 2026.</div>
-    </div>
+    <details class="defn"><summary>מהו מדד בגרות-טק</summary>
+      <p>שיעור הבוגרים שסיימו, יחד, 5 יח"ל מתמטיקה, 5 יח"ל אנגלית, ו-5 יח"ל פיזיקה או מדעי המחשב, מתוך כל תלמידי השכבה. הממוצע הארצי במחזור 2025: 11.6%. מקור: משרד החינוך, "זכאות לבגרות טק", פורסם במאי 2026. המערכת מחשבת לפי אותה הגדרה.</p>
+    </details>
   </section>
 
   <section class="wrap qs">
-    <h2>ארבע שאלות שמנהלת אגף שואלת, ותשובה לכל אחת</h2>
+    <h2>מה עושים עם הידע הזה</h2>
     <div class="q">
-      <h3>מתי מחליטים</h3>
-      <p>הזכאות נקבעת בשתי נקודות: בחירת המקצועות בכניסה ל-י', וההתמדה עד יב'. המערכת מודדת את שתיהן בכל שנה, בתחילתה ובסופה. ההחלטות מתקבלות כשהמחזור עוד פתוח.</p>
+      <h3>פועלים לפני שהמחזור נסגר</h3>
+      <p>המדד נקבע בבחירת המקצועות בכניסה ל-י' ובהתמדה עד יב'. שתי הנקודות נמדדות בכל שנה, בתחילתה ובסופה, כך שתגבור, שיבוץ או שיחה עם מנהל קורים כשעוד יש על מי להשפיע.</p>
     </div>
     <div class="q">
-      <h3>מה אומרים למנהלי בתי הספר</h3>
-      <p>המספר העירוני מפורק לבתי הספר לפי ההגדרה הרשמית. תרומתו של כל בית ספר, מגמתו מול השנה הקודמת, ומה נדרש ממנו בשנה הבאה, על שולחן אחד. השיחה מתנהלת על נתונים משותפים.</p>
+      <h3>מדברים עם מנהלי בתי הספר על אותם מספרים</h3>
+      <p>לכל בית ספר: כמה הוא תורם למדד העירוני, לאן הוא הולך מול השנה הקודמת, ומה נדרש ממנו בשנה הבאה. יש גם מסך מוכן לישיבת המנהלים.</p>
     </div>
     <div class="q">
-      <h3>לאן הולך תקציב התגבור</h3>
-      <p>כל חסם מכומת בתלמידים: כמה אובדים במעבר מ-ט' ל-י', כמה נושרים ממתמטיקה 5 יח"ל בין י' ל-יב', ובאילו בתי ספר. התקציב הולך למקום שבו הוא מוסיף זכאים, ואפשר להראות למה.</p>
+      <h3>מכוונים את תקציב התגבור</h3>
+      <p>כל חסם מכומת בתלמידים ומשויך לבית ספר ולשכבה. התקציב הולך למקום שבו הוא מוסיף זכאים, ואפשר להראות לראש העיר למה.</p>
     </div>
     <div class="q">
-      <h3>מה יהיה המספר בפרסום הבא</h3>
-      <p>צפי למדד של שני המחזורים הבאים, מהתלמידים שכבר במסלול ולפי שיעורי ההתמדה שנמדדו ברשות. הפער ליעד של ראש העיר מנוהל לאורך השנה, מול הדירוג הארצי, ולא מתגלה ביום הפרסום.</p>
+      <h3>מגיעים לפרסום בלי הפתעות</h3>
+      <p>הפער ליעד מנוהל לאורך השנה, מול הממוצע הארצי ומול 33 רשויות. המספר שמשרד החינוך יפרסם כבר מוכר לכם.</p>
     </div>
   </section>
-
   <section class="wrap screens">
     <h2>המסכים</h2>
     <p class="sub">מתוך דשבורד ההדגמה. העיר, בתי הספר והמספרים בדויים. המבנה, ההגדרות והנתונים הארציים אמיתיים.</p>
