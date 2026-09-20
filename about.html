@@ -215,6 +215,16 @@ h2{font-size:clamp(30px,4vw,48px);max-width:20ch;}
 .faq details[open] summary::after{content:"\2212";}
 .faq details p{padding:0 0 24px;color:var(--muted);max-width:64ch;}
 
+/* about me */
+.me{background:#fff;}
+.me .grid{display:grid;grid-template-columns:1.3fr .7fr;gap:64px;align-items:center;}
+.me .lede{color:var(--ink);font-weight:700;}
+.me .bio{margin-top:12px;color:var(--muted);max-width:56ch;}
+.me .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px;display:grid;gap:10px;justify-items:start;}
+.me .nm{font-size:22px;font-weight:800;}
+.me .ln{direction:ltr;unicode-bidi:isolate;text-decoration:none;font-size:18px;border-bottom:2px solid var(--green);padding-bottom:1px;}
+.me .card .cta{margin-top:12px;}
+
 /* 16 footer */
 footer{background:var(--char);color:#fff;padding:64px 0;}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;}
@@ -237,7 +247,7 @@ footer .demo{display:block;margin-top:14px;font-size:15px;color:#9fb3ac;}
 @media (max-width:1180px){ .float.a,.float.c{right:-6px;} .float.b{left:-6px;} }
 @media (max-width:960px){
   section{padding:76px 0;}
-  .problem .grid,.levers .grid,.budget .grid,.shift .cols,.ba .cols{grid-template-columns:1fr;gap:34px;}
+  .me .grid,.problem .grid,.levers .grid,.budget .grid,.shift .cols,.ba .cols{grid-template-columns:1fr;gap:34px;}
   .mid svg{transform:rotate(-90deg);}
   .three,.how3{grid-template-columns:1fr;}
   .fg{grid-template-columns:1fr 1fr;}
@@ -532,6 +542,24 @@ footer .demo{display:block;margin-top:14px;font-size:15px;color:#9fb3ac;}
       <details><summary>מי משתמש במערכת?</summary><p>בעיקר מנהלי אגפי חינוך ומנהלי בתי ספר, בהתאם למודל העבודה של הרשות.</p></details>
       <details><summary>האם ניתן להתחיל בפיילוט?</summary><p>כן. ניתן להתחיל עם מספר בתי ספר, לבחון את הערך ולהרחיב בהמשך.</p></details>
       <details><summary>האם הנתונים נשארים בשליטת הרשות?</summary><p>כן. הנתונים יושבים בגיליון של אגף החינוך, והמערכת קוראת אותו ומחשבת ממנו בלי לשמור עותק. היא עובדת עם מספרים מצרפיים לפי בית ספר ושכבה, בלי שמות תלמידים. מודל אבטחת המידע המלא מוגדר ומאושר מול כל רשות לפי המדיניות שלה.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="me" id="contact">
+  <div class="wrap">
+    <div class="grid">
+      <div class="rv">
+        <h2>מי עומד מאחורי המערכת</h2>
+        <p class="lede">רמי שקד. מפתח ומטמיע את Tokio Tech Dashboard.</p>
+        <p class="bio">עובד עם מינהלי חינוך ברשויות מקומיות על חדשנות, טכנולוגיה ושימוש בנתונים לקבלת החלטות. המערכת נולדה מעבודה שוטפת עם מינהל חינוך של רשות גדולה, מול ראש העיר ומול מנהלי בתי הספר, והיא פועלת שם היום.</p>
+      </div>
+      <div class="card rv">
+        <div class="nm">רמי שקד</div>
+        <a class="ln" href="mailto:rami.shaked@gmail.com">rami.shaked@gmail.com</a>
+        <!-- PHONE: <a class="ln" href="tel:+972XXXXXXXXX">05X-XXX-XXXX</a> -->
+        <a class="cta" href="mailto:rami.shaked@gmail.com?subject=%D7%AA%D7%99%D7%90%D7%95%D7%9D%20%D7%94%D7%93%D7%92%D7%9E%D7%94%20%D7%A9%D7%9C%20Tokio%20Tech%20Dashboard">לתיאום הדגמה <svg><use href="#arr"/></svg></a>
+      </div>
     </div>
   </div>
 </section>
